@@ -1,0 +1,14 @@
+<div class="container my-5">
+    <div class="row justify-content-between">
+        <div *ngFor="let recipe of recipes; let i = index;" class="col-md-5 border mb-2 row p-1">
+            <p class="col-md-3" *ngIf="recipe.images">
+                <img src="{{ recipe.images.small }}" alt="">
+            </p>
+            <div class="col-md-8">
+                <h5><a routerLink="/detail/{{ recipe.uuid }}">{{ recipe.title }}</a></h5>
+                <p>{{ recipe.description }}</p>
+                <button class="btn btn-danger" (click)="delete(recipe.uuid)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

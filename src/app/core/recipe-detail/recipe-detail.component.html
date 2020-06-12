@@ -1,0 +1,30 @@
+<div class="container my-3" *ngIf="recipe">
+    <div class="row">
+        <div class="col-md-3" *ngIf="recipe.images">
+            <img src="{{recipe.images.medium}}" alt="{{recipe.title}}">
+        </div>
+        <div class="col-md-9 border p-2">
+            <h2>{{ recipe.title }}</h2>
+            <p>Description: {{ recipe.description }}</p>
+            <p>Preparation Time: {{ recipe.prepTime }}</p>
+            <p>Cooking Time: {{ recipe.cookTime }}mins</p>
+            <p>Servings: {{ recipe.servings }}</p>
+            <h4>Ingredients</h4>
+            <ul>
+                <li *ngFor="let ingredient of recipe.ingredients; let i = index;">
+                    <p class="mb-1">Name: {{ingredient.name}}, Amount: {{ingredient.amount}}, Measure: {{ingredient.measurement}}</p>
+                    <ng-container *ngFor="let special of special">
+                        <p *ngIf="ingredient.uuid == special.ingredientId">Title: {{special.title}} <br> Type: {{special.type}} <br> Text: {{special.text}}</p>
+                    </ng-container>
+                </li>
+            </ul>
+            <h4>Directions</h4>
+            <ul>
+                <li *ngFor="let direction of recipe.directions; let i = index;" class="mb-1">
+                    {{direction.instructions}}{{direction.optional ? 'optional' : ''}}
+                </li>
+            </ul>
+            <p>Post Date: {{ recipe.postDate }}</p>
+        </div>
+    </div>
+</div>
